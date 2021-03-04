@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persoane 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="persoane.xsd">
+    <persoana id="1">
+        <nume>Popescu</nume>
+        <prenume>Ion</prenume>
+        <varsta>23</varsta>
+
+        <adresa>
+            <strada>Carol</strada>
+            <numar>1</numar>
+            <localitate>Iasi</localitate>
+            <judet>Iasi</judet>
+            <tara>Romania</tara>
+        </adresa>
+
+        <job>
+            <firma>Amazon</firma>
+            <rol>Software Engineer</rol>
+        </job>
+    </persoana>
+
+    <persoana id="2">
+        <nume>George</nume>
+        <prenume>Sorin</prenume>
+        <varsta>20</varsta>
+
+        <adresa>
+            <strada>Aleea Noua</strada>
+            <numar>9</numar>
+            <localitate>Botosani</localitate>
+            <judet>Botosani</judet>
+            <tara>Romania</tara>
+        </adresa>
+
+        <job>
+            <firma>Continental</firma>
+            <rol>Software Developer</rol>
+        </job>
+    </persoana>
+
+    <persoana id="3">
+        <nume>Cojocaru</nume>
+        <prenume>Alex</prenume>
+        <varsta>21</varsta>
+
+        <adresa>
+            <strada>Ciurchi</strada>
+            <numar>101</numar>
+            <localitate>Iasi</localitate>
+            <judet>Iasi</judet>
+            <tara>Romania</tara>
+        </adresa>
+
+        <job>
+            <firma>Continental</firma>
+            <rol>Software Developer</rol>
+        </job>
+    </persoana>
+</persoane>
