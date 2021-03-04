@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XmlParser {
+    private static final int NUME = 0;
+    private static final int PRENUME = 1;
+    private static final int VARSTA = 2;
+    private static final int GRUPA = 3;
+    private static final int MEDIE = 4;
+
     static void addStudent(StudentBean bean, String filePath) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -55,5 +61,40 @@ public class XmlParser {
         Transformer transformer = transformerFactory.newTransformer();
         StreamResult result = new StreamResult(filePath);
         transformer.transform(source, result);
+    }
+
+    static StudentBean searchStudent(String name, String filePath) throws ParserConfigurationException, IOException, SAXException {
+        StudentBean bean = null;
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document doc = documentBuilder.parse(filePath);
+
+        Element rootElement = doc.getDocumentElement();
+        NodeList students = rootElement.getElementsByTagName("StudentBean");
+
+        for (int i = 0; i < students.getLength(); i++) {
+            List<Node> filteredNodes = new ArrayList<>();
+            NodeList childs = students.item(i).getChildNodes();
+
+            for (int j = 0; j < childs.getLength(); j++) {
+                if (childs.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                    filteredNodes.add(childs.item(j));
+                }
+            }
+
+            if (name.equals(filteredNodes.get(NUME).getTextContent())) {
+                bean = new StudentBean();
+                bean.setNume(filteredNodes.get(NUME).getTextContent());
+                bean.setPrenume(filteredNodes.get(PRENUME).getTextContent());
+                bean.setVarsta(Integer.parseInt(filteredNodes.get(VARSTA).getTextContent()));
+                bean.setGrupa(filteredNodes.get(GRUPA).getTextContent());
+                bean.setMedie(Double.parseDouble(filteredNodes.get(MEDIE).getTextContent()));
+
+                break;
+            }
+        }
+
+        return bean;
     }
 }

@@ -16,6 +16,10 @@
     <servlet-name>ReadStudent</servlet-name>
     <servlet-class>ReadStudentServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SearchStudent</servlet-name>
+    <servlet-class>SearchStudentServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
@@ -28,5 +32,9 @@
   <servlet-mapping>
     <servlet-name>ReadStudent</servlet-name>
     <url-pattern>/read-student</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchStudent</servlet-name>
+    <url-pattern>/search-student</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -40,5 +40,9 @@
             }
         %></li>
     </ul>
+
+    <p>
+        <a href="index.jsp">Pagina principala</a>
+    </p>
 </body>
 </html>
