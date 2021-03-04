@@ -1,4 +1,18 @@
-<?xml version = "1.0" encoding = "UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <studenti>
 
+    <StudentBean>
+        <nume>danie</nume>
+        <prenume>sorin</prenume>
+        <varsta>90</varsta>
+        <grupa>1310A</grupa>
+        <medie>12.0</medie>
+    </StudentBean>
+    <StudentBean>
+        <nume>buna siara</nume>
+        <prenume>eu sunt</prenume>
+        <varsta>89</varsta>
+        <grupa>12313</grupa>
+        <medie>12.0</medie>
+    </StudentBean>
 </studenti>
