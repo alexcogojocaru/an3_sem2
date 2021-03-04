@@ -18,6 +18,8 @@
         Nume: <input type="text" name="nume"><br>
         Prenume: <input type="text" name="prenume"><br>
         Varsta: <input type="number" name="varsta"><br>
+        Grupa: <input type="text" name="grupa"><br>
+        Medie: <input type="number" name="medie"><br>
         <br>
         <br>
         <button type="submit" name="submit">Submit</button>

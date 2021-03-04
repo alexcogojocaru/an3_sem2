@@ -12,7 +12,7 @@ public class ReadStudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        File file = new File("/home/alex/Desktop/sd/JEE-test/src/main/resources/student.xml");
+        File file = new File("/home/alex/Desktop/an3_sem2/sd/lab1-aplicatie-simpla/src/main/resources/student.xml");
 
         if (!file.exists()) {
             response.sendError(404, "Nu a fost gasit niciun student serializat pe disc");
@@ -25,6 +25,8 @@ public class ReadStudentServlet extends HttpServlet {
         request.setAttribute("nume", bean.getNume());
         request.setAttribute("prenume", bean.getPrenume());
         request.setAttribute("varsta", bean.getVarsta());
+        request.setAttribute("grupa", bean.getGrupa());
+        request.setAttribute("medie", bean.getMedie());
 
         request.getRequestDispatcher("./info-student.jsp").forward(request, response);
     }
