@@ -2,14 +2,14 @@
 
 export PATH="<LOCATIE_SERVER_GLASSFISH>/bin:$PATH"
 
-asadmin start-domain
-asadmin stop-domain
+<b>asadmin</b> start-domain
+<b>asadmin</b> stop-domain
 
 <h2>Deploy pe server:</h2>
-asadmin deploy /ear/target/lab2.ear
+<b>asadmin</b> deploy /ear/target/lab2.ear
 
 <h2>Stergere de pe server:</h2>
-asadmin undeploy <NUME_APLICATIE>
+<b>asadmin</b> undeploy <NUME_APLICATIE>
 
 <h2>Redeploy:</h2>
-asadmin redeploy --name lab2 /ear/target/lab2.ear
+<b>asadmin</b> redeploy --name lab2 /ear/target/lab2.ear
