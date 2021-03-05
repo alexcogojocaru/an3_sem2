@@ -1,0 +1,7 @@
+__var x = 3, y = 5, z=7
+__for x 0 10 2
+__if x > 4
+__print 3
+__endif
+__print lfa
+__endfor
