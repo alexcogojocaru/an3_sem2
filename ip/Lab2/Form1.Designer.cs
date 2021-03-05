@@ -113,13 +113,17 @@ namespace WindowsFormsApp1
             // 
             // trigEqComboBox
             // 
+            this.trigEqComboBox.DataSource = new WindowsFormsApp1.TrigEquation.TrigonometricFunction[] {
+        WindowsFormsApp1.TrigEquation.TrigonometricFunction.Sin,
+        WindowsFormsApp1.TrigEquation.TrigonometricFunction.Cos,
+        WindowsFormsApp1.TrigEquation.TrigonometricFunction.Tan};
             this.trigEqComboBox.FormattingEnabled = true;
+            this.trigEqComboBox.DataSource = Enum.GetValues(typeof(TrigEquation.TrigonometricFunction));
             this.trigEqComboBox.Location = new System.Drawing.Point(24, 53);
             this.trigEqComboBox.Name = "trigEqComboBox";
             this.trigEqComboBox.Size = new System.Drawing.Size(121, 21);
             this.trigEqComboBox.TabIndex = 8;
             this.trigEqComboBox.SelectedIndexChanged += new System.EventHandler(this.trigEqComboBox_SelectedIndexChanged);
-            this.trigEqComboBox.DataSource = Enum.GetValues(typeof(TrigEquation.TrigonometricFunction));
             // 
             // eqTrigRadioButton
             // 
@@ -246,6 +250,7 @@ namespace WindowsFormsApp1
             this.exitButton.TabIndex = 6;
             this.exitButton.Text = "Iesire";
             this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // Form1
             // 
