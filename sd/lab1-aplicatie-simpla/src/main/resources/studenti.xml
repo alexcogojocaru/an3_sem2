@@ -14,4 +14,4 @@
         <grupa>12313</grupa>
         <medie>12.0</medie>
     </StudentBean>
-<StudentBean><nume>cojocaru</nume><prenume>daniel</prenume><varsta>12</varsta><grupa>adsd</grupa><medie>9.0</medie></StudentBean></studenti>
+<StudentBean><nume>cojocaru</nume><prenume>daniel</prenume><varsta>12</varsta><grupa>adsd</grupa><medie>9.0</medie></StudentBean><StudentBean><nume>test</nume><prenume>test</prenume><varsta>0</varsta><grupa>test</grupa><medie>0.0</medie></StudentBean></studenti>
