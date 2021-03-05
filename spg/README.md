@@ -1,1 +1,0 @@
-<h1>Sisteme de prelucrarer grafica</h1>
