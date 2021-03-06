@@ -12,7 +12,7 @@
         </session>
         <session>
             <ejb-name>BankAccountBean</ejb-name>
-            <mapped-name>bankAccount</mapped-name>
+            <mapped-name>bankaccount</mapped-name>
             <business-local>interfaces.BankAccountBeanRemote</business-local>
             <business-remote>interfaces.BankAccountBeanRemote</business-remote>
             <ejb-class>ejb.BankAccountBeanImpl</ejb-class>

@@ -6,8 +6,24 @@
         <servlet-name>ProcessBankOperation</servlet-name>
         <servlet-class>ProcessBankOperationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessStudent</servlet-name>
+        <servlet-class>ProcessStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FetchStudentList</servlet-name>
+        <servlet-class>FetchStudentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessBankOperation</servlet-name>
         <url-pattern>/process-bank-operation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessStudent</servlet-name>
+        <url-pattern>/process-student</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FetchStudentList</servlet-name>
+        <url-pattern>/fetch-student-list</url-pattern>
     </servlet-mapping>
 </web-app>

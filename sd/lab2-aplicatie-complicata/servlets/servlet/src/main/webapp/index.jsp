@@ -23,5 +23,11 @@
                 <button type="submit">Efectuare</button>
             </fieldset>
         </form>
+
+    <hr />
+    <h3>Baza de date cu studenti</h3>
+    <a href="./formular.jsp">Adaugare student</a>
+    <br />
+    <a href="./fetch-student-list">Vizualizare studenti</a>
     </body>
 </html>

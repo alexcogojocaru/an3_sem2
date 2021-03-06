@@ -1,5 +1,6 @@
 import interfaces.BankAccountBeanRemote;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -19,15 +20,15 @@ public class ProcessBankOperationServlet extends HttpServlet {
 
         BankAccountBeanRemote bankAccount;
 
-        bankAccount = (BankAccountBeanRemote) req.getSession().getAttribute("bankAccount-Bean");
+        bankAccount = (BankAccountBeanRemote) req.getSession().getAttribute("bankAccountBean");
         if (bankAccount == null) {
             try {
                 InitialContext ctx = new InitialContext();
-                bankAccount = (BankAccountBeanRemote) ctx.lookup("bankaccount#interfaces.StatelessSessionBeanRemote");
+                bankAccount = (BankAccountBeanRemote) ctx.lookup("bankaccount#interfaces.BankAccountBeanRemote");
                 req.getSession().setAttribute("bankAccountBean", bankAccount);
             } catch (NamingException e) {
                 e.printStackTrace();
-                return;
+                resp.getWriter().print("Error");
             }
         }
 
