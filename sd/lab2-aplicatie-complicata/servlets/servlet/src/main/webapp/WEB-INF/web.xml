@@ -14,6 +14,15 @@
         <servlet-name>FetchStudentList</servlet-name>
         <servlet-class>FetchStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteStudent</servlet-name>
+        <servlet-class>DeleteStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateStudent</servlet-name>
+        <servlet-class>UpdateStudentServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>ProcessBankOperation</servlet-name>
         <url-pattern>/process-bank-operation</url-pattern>
@@ -25,5 +34,13 @@
     <servlet-mapping>
         <servlet-name>FetchStudentList</servlet-name>
         <url-pattern>/fetch-student-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStudent</servlet-name>
+        <url-pattern>/delete-student</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStudent</servlet-name>
+        <url-pattern>/update-student</url-pattern>
     </servlet-mapping>
 </web-app>
