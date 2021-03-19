@@ -1,0 +1,9 @@
+[submodule "spg/opengl/glfw"]
+	path = spg/opengl/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "spg/opengl/glad"]
+	path = spg/opengl/glad
+	url = https://github.com/Dav1dde/glad.git
+[submodule "spg/opengl/glm"]
+	path = spg/opengl/glm
+	url = https://github.com/g-truc/glm.git

@@ -1,8 +1,7 @@
 package com.sd.laborator.controllers
 
-import com.sd.laborator.interfaces.LocationSearchInterface
-import com.sd.laborator.interfaces.WeatherForecastInterface
-import com.sd.laborator.pojo.WeatherForecastData
+import com.sd.laborator.abstractapi.AbstractWeatherAPI
+import com.sd.laborator.interfaces.OrchestratorInterface
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PathVariable
@@ -12,22 +11,20 @@ import org.springframework.web.bind.annotation.ResponseBody
 
 @Controller
 class WeatherAppController {
-    @Autowired
-    private lateinit var locationSearchService: LocationSearchInterface
+//    @Autowired
+//    private lateinit var locationSearchService: AbstractWeatherAPI
+//
+//    @Autowired
+//    private lateinit var weatherForecastService: AbstractWeatherAPI
 
     @Autowired
-    private lateinit var weatherForecastService: WeatherForecastInterface
+    private lateinit var orchestrator: OrchestratorInterface
 
     @RequestMapping("/getforecast/{location}", method = [RequestMethod.GET])
     @ResponseBody
     fun getForecast(@PathVariable location: String): String {
-        val locationId = locationSearchService.getLocationId(location)
-
-        if (locationId == -1) {
-            return "Nu s-au putut gasi date meteo pentru cuvintele cheie \"$location\""
-        }
-
-        val rawForecastData: WeatherForecastData = weatherForecastService.getForecastData(locationId)
-        return rawForecastData.toString()
+//        locationSearchService.setNextLink(weatherForecastService)
+//        return locationSearchService.getAPIResult(location)
+        return orchestrator.orchestrate(location)
     }
 }
