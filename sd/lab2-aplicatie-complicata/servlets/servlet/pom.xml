@@ -32,5 +32,10 @@
       <artifactId>ejbs</artifactId>
       <type>ejb</type>
     </dependency>
+      <dependency>
+          <groupId>commons-beanutils</groupId>
+          <artifactId>commons-beanutils</artifactId>
+          <version>1.7.0</version>
+      </dependency>
   </dependencies>
 </project>
