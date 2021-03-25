@@ -8,4 +8,5 @@ interface PersonInterface {
     fun updatePerson(id: Int, person: Person)
     fun deletePerson(id: Int)
     fun getPersons(): List<Person>
+    fun personExists(id: Int): Boolean
 }

@@ -1,10 +1,9 @@
 package com.sd.laborator.interfaces
 
-import java.util.concurrent.ConcurrentHashMap
+import com.sd.laborator.pojo.Person
 
 interface PaymentInterface {
-    fun add(id: Int, amount: Int)
-    fun substract(id: Int, amount: Int)
-    fun update(id: Int, amount: Int)
-    fun getPayments(): ConcurrentHashMap<Int, Int>
+    fun add(person: Person, amount: Int): Person
+    fun subtract(person: Person, amount: Int): Person
+    fun update(person: Person, amount: Int): Person
 }

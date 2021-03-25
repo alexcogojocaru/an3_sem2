@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod
 @Controller
 class PersonController {
     @Autowired
-    private lateinit var paymentService: PersonInterface
+    private lateinit var personService: PersonInterface
 
     @RequestMapping(value = ["/person"], method = [RequestMethod.POST])
     fun createPerson(@RequestBody person: Person): ResponseEntity<Unit> {
-        paymentService.createPerson(person)
+        personService.createPerson(person)
         return ResponseEntity(HttpStatus.CREATED)
     }
 
     @RequestMapping(value = ["/person/{id}"], method = [RequestMethod.GET])
     fun readPerson(@PathVariable id: Int): ResponseEntity<Person?> {
-        val person = paymentService.readPerson(id)
+        val person = personService.readPerson(id)
         val status = if (person == null) {
             HttpStatus.NOT_FOUND
         }
@@ -37,17 +37,28 @@ class PersonController {
 
     @RequestMapping(value = ["/person/{id}"], method = [RequestMethod.PUT])
     fun updatePerson(@PathVariable id: Int, @RequestBody person: Person): ResponseEntity<Unit> {
-        paymentService.readPerson(id)?.let {
-            paymentService.updatePerson(it.id, person)
+        personService.readPerson(id)?.let {
+            personService.updatePerson(it.id, person)
             return ResponseEntity(HttpStatus.ACCEPTED)
         } ?: return ResponseEntity(HttpStatus.NOT_FOUND)
     }
 
     @RequestMapping(value = ["/person/{id}"], method = [RequestMethod.DELETE])
     fun deletePerson(@PathVariable id: Int): ResponseEntity<Unit> {
-        paymentService.readPerson(id)?.let {
-            paymentService.deletePerson(it.id)
+        personService.readPerson(id)?.let {
+            personService.deletePerson(it.id)
             return ResponseEntity(HttpStatus.OK)
         } ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    }
+
+    @RequestMapping(value = ["/persons"], method = [RequestMethod.GET])
+    fun getPersons(): ResponseEntity<List<Person>> {
+        val persons = personService.getPersons()
+
+        if (persons.isEmpty()) {
+            return ResponseEntity(persons, HttpStatus.NO_CONTENT)
+        }
+
+        return ResponseEntity(persons, HttpStatus.OK)
     }
 }

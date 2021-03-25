@@ -1,6 +1,7 @@
 package com.sd.laborator.controllers
 
 import com.sd.laborator.interfaces.PaymentInterface
+import com.sd.laborator.services.PersonService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -14,21 +15,51 @@ class PaymentController {
     @Autowired
     private lateinit var paymentService: PaymentInterface
 
-    @RequestMapping(value = ["/person/{id}/add/{sum}"], method = [RequestMethod.POST])
-    fun add(@PathVariable id: Int, @PathVariable sum: Int): ResponseEntity<Unit> {
-        paymentService.add(id, sum)
+    @Autowired
+    private lateinit var personService: PersonService
+
+    @RequestMapping(value = ["/pay/{id}/{sum}"], method = [RequestMethod.POST])
+    fun addPayment(@PathVariable id: Int, @PathVariable sum: Int): ResponseEntity<Unit> {
+        if (!personService.personExists(id)) {
+            return ResponseEntity(HttpStatus.NOT_FOUND)
+        }
+
+        personService.readPerson(id)?.let {
+            paymentService.add(it, sum)
+        }?.let {
+            personService.updatePerson(id, it)
+        }
+
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @RequestMapping(value = ["/payment/{id}/sub/{sum}"], method = [RequestMethod.POST])
-    fun subtract(@PathVariable id: Int, @PathVariable sum: Int): ResponseEntity<Unit> {
-        paymentService.substract(id, sum)
+    @RequestMapping(value = ["/pay/{id}/{sum}"], method = [RequestMethod.DELETE])
+    fun subtractPayment(@PathVariable id: Int, @PathVariable sum: Int): ResponseEntity<Unit> {
+        if (!personService.personExists(id)) {
+            return ResponseEntity(HttpStatus.NOT_FOUND)
+        }
+
+        personService.readPerson(id)?.let {
+            paymentService.subtract(it, sum)
+        }?.let {
+            personService.updatePerson(id, it)
+        }
+
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @RequestMapping(value = ["/payment/{id}/update/{sum}"], method = [RequestMethod.POST])
-    fun update(@PathVariable id: Int, @PathVariable sum: Int): ResponseEntity<Unit> {
-        paymentService.update(id, sum)
+    @RequestMapping(value = ["/pay/{id}/{sum}"], method = [RequestMethod.PUT])
+    fun updatePayment(@PathVariable id: Int, @PathVariable sum: Int): ResponseEntity<Unit> {
+        if (!personService.personExists(id)) {
+            return ResponseEntity(HttpStatus.NOT_FOUND)
+        }
+
+        personService.readPerson(id)?.let {
+            paymentService.update(it, sum)
+        }?.let {
+            personService.updatePerson(id, it)
+        }
+
         return ResponseEntity(HttpStatus.OK)
     }
 }

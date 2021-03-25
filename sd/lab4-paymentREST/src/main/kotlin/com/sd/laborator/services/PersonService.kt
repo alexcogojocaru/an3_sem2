@@ -31,4 +31,8 @@ class PersonService : PersonInterface {
     override fun getPersons(): List<Person> {
         return payers.map { it.value }.toList()
     }
+
+    override fun personExists(id: Int): Boolean {
+        return payers.containsKey(id)
+    }
 }
