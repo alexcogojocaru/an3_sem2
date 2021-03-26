@@ -22,6 +22,22 @@
         <servlet-name>UpdateStudent</servlet-name>
         <servlet-class>UpdateStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessCourse</servlet-name>
+        <servlet-class>ProcessCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FetchCourse</servlet-name>
+        <servlet-class>FetchCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCourse</servlet-name>
+        <servlet-class>DeleteCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCourse</servlet-name>
+        <servlet-class>UpdateCourseServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>ProcessBankOperation</servlet-name>
@@ -42,5 +58,21 @@
     <servlet-mapping>
         <servlet-name>UpdateStudent</servlet-name>
         <url-pattern>/update-student</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessCourse</servlet-name>
+        <url-pattern>/process-course</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FetchCourse</servlet-name>
+        <url-pattern>/fetch-course</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCourse</servlet-name>
+        <url-pattern>/delete-course</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCourse</servlet-name>
+        <url-pattern>/update-course</url-pattern>
     </servlet-mapping>
 </web-app>

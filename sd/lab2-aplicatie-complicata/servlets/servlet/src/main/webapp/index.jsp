@@ -33,5 +33,15 @@
     <a href="update.jsp">Actualizare student</a>
     <br />
     <a href="delete.jsp">Stergere student</a>
+
+    <br>
+    <h3>Baza de date cursuri</h3>
+    <a href="./formular-curs.jsp">Adaugare curs</a>
+    <br>
+    <a href="./fetch-course">Vizualizare cursuri</a>
+    <br>
+    <a href="update-course.jsp">Actualizare curs</a>
+    <br>
+    <a href="delete-course.jsp">Stergere curs</a>
     </body>
 </html>
