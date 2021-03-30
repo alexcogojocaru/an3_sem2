@@ -43,5 +43,5 @@ class RabbitMqConnectionFactoryComponent {
     }
 
     @Bean
-    fun rabbitTemplate(): RabbitTemplate = RabbitTemplate(this.connectionFactory())
+    fun rabbitTemplate(): RabbitTemplate = RabbitTemplate(connectionFactory())
 }

@@ -85,10 +85,10 @@ class StackAppComponent {
         }
 
         if (A!!.data.count() == B!!.data.count()) {
-            var partialResult1 = cartesianProductOperation.executeOperation(A!!.data, B!!.data)
-            var partialResult2 = cartesianProductOperation.executeOperation(B!!.data, B!!.data)
+            val partialResult1 = cartesianProductOperation.executeOperation(A!!.data, B!!.data)
+            val partialResult2 = cartesianProductOperation.executeOperation(B!!.data, B!!.data)
 
-            var result = unionOperation.executeOperation(partialResult1, partialResult2)
+            val result = unionOperation.executeOperation(partialResult1, partialResult2)
             return "compute~" + "{\"A\": \"" + A?.data.toString() + "\", \"B\": \"" + B?.data.toString() + "\", \"result\": \"" +
                     result.toString() + "\"}"
         }

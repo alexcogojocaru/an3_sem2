@@ -39,4 +39,21 @@ class LibraryPrinterService: LibraryPrinter {
 
         return content
     }
+
+    override fun printXML(books: Set<Book>): String {
+        var content: String = "<books>\n"
+
+        books.forEach {
+            content +=
+                    "\t<book>\n" +
+                    "\t\t<title>${it.name}</title>\n" +
+                    "\t\t<author>${it.author}</author>\n" +
+                    "\t\t<publisher>${it.publisher}</publisher>\n" +
+                    "\t\t<content>${it.content}</content>\n" +
+                    "\t</book>\n"
+        }
+
+        content += "</books>"
+        return content
+    }
 }
