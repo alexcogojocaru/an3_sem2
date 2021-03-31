@@ -57,47 +57,20 @@ class LibraryDAOService: LibraryDAO {
     }
 
     override fun findAllByAuthor(author: String): Set<Book> {
-        val authorBooksFiltered: MutableSet<Book> = mutableSetOf()
-
-        books.forEach {
-            val titleWords = it.author?.toLowerCase()?.split(" ")
-            if (titleWords != null) {
-                if (author.toLowerCase() in titleWords) {
-                    authorBooksFiltered.add(it)
-                }
-            }
-        }
-
-        return authorBooksFiltered.toSet()
+        return books.filter {
+            it.author?.toLowerCase()?.indexOf(author.toLowerCase(), 0)!! >= 0
+        }.toSet()
     }
 
     override fun findAllByTitle(title: String): Set<Book> {
-        val titleBooksFiltered: MutableSet<Book> = mutableSetOf()
-
-        books.forEach {
-            val titleWords = it.name?.toLowerCase()?.split(" ")
-            if (titleWords != null) {
-                if (title.toLowerCase() in titleWords) {
-                    titleBooksFiltered.add(it)
-                }
-            }
-        }
-
-        return titleBooksFiltered.toSet()
+        return books.filter {
+            it.name?.toLowerCase()?.indexOf(title.toLowerCase(), 0)!! >= 0
+        }.toSet()
     }
 
     override fun findAllByPublisher(publisher: String): Set<Book> {
-        val publisherBooksFiltered: MutableSet<Book> = mutableSetOf()
-
-        books.forEach {
-            val titleWords = it.publisher?.toLowerCase()?.split(" ")
-            if (titleWords != null) {
-                if (publisher.toLowerCase() in titleWords) {
-                    publisherBooksFiltered.add(it)
-                }
-            }
-        }
-
-        return publisherBooksFiltered.toSet()
+        return books.filter {
+            it.publisher?.toLowerCase()?.indexOf(publisher.toLowerCase(), 0)!! >= 0
+        }.toSet()
     }
 }

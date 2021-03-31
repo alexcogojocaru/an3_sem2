@@ -38,6 +38,7 @@ class LibraryAppComponent {
 
     @RabbitListener(queues = ["\${libraryapp.rabbitmq.queue}"])
     fun receiveMessage(msg: String) {
+        println(msg)
         val processedMsg = (msg.split(",").map { it.toInt().toChar() }).joinToString(separator = "")
 
         try {
