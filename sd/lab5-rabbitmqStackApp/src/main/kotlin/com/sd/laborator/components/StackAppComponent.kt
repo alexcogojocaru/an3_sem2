@@ -1,12 +1,14 @@
 package com.sd.laborator.components
 
-import com.sd.laborator.interfaces.CartesianProductOperation
+import com.sd.laborator.abstractapi.AbstractChaining
+import com.sd.laborator.abstractapi.PayloadReceiver
 import com.sd.laborator.interfaces.PrimeNumberGenerator
 import com.sd.laborator.interfaces.UnionOperation
 import com.sd.laborator.model.Stack
 import org.springframework.amqp.core.AmqpTemplate
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 
 @Component
@@ -17,11 +19,17 @@ class StackAppComponent {
     @Autowired
     private lateinit var primeGenerator: PrimeNumberGenerator
 
+    @Qualifier("cartesianProductService")
     @Autowired
-    private lateinit var cartesianProductOperation: CartesianProductOperation
+    private lateinit var cartesianProductOperationOne: AbstractChaining
 
+    @Qualifier("cartesianProductService")
     @Autowired
-    private lateinit var unionOperation: UnionOperation
+    private lateinit var cartesianProductOperationTwo: AbstractChaining
+
+    @Qualifier("unionService")
+    @Autowired
+    private lateinit var unionOperation: AbstractChaining
 
     @Autowired
     private lateinit var connectionFactory: RabbitMqConnectionFactoryComponent
@@ -67,9 +75,9 @@ class StackAppComponent {
         if (count < 1)
             return null
 
-        val X: MutableSet<Int> = mutableSetOf()
+        val X: MutableSet<Pair<Int, Int>> = mutableSetOf()
         while (X.count() < count) {
-            X.add(primeGenerator.generatePrimeNumber())
+            X.add(Pair(primeGenerator.generatePrimeNumber(), 0))
         }
 
         return Stack(X)
@@ -85,12 +93,19 @@ class StackAppComponent {
         }
 
         if (A!!.data.count() == B!!.data.count()) {
-            val partialResult1 = cartesianProductOperation.executeOperation(A!!.data, B!!.data)
-            val partialResult2 = cartesianProductOperation.executeOperation(B!!.data, B!!.data)
+            cartesianProductOperationOne.loadSet(A!!.data)
+            cartesianProductOperationOne.loadSet(B!!.data)
 
-            val result = unionOperation.executeOperation(partialResult1, partialResult2)
-            return "compute~" + "{\"A\": \"" + A?.data.toString() + "\", \"B\": \"" + B?.data.toString() + "\", \"result\": \"" +
-                    result.toString() + "\"}"
+            cartesianProductOperationTwo.loadSet(B!!.data)
+            cartesianProductOperationTwo.loadSet(B!!.data)
+
+            cartesianProductOperationOne.setLink(cartesianProductOperationTwo)
+            cartesianProductOperationTwo.setLink(unionOperation)
+
+            cartesianProductOperationOne.executeOperation()
+
+            return "${PayloadReceiver.list.size} compute~" + "{\"A\": \"" + A?.data.toString() + "\", \n\"B\": \"" + B?.data.toString() + "\", \n\"result\": \"" +
+                    PayloadReceiver.list[0].toString() + "\"}"
         }
 
         return "compute~" + "Error: A.count() != B.count()"

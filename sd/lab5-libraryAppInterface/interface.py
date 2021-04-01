@@ -26,6 +26,7 @@ class App(QWidget):
         self.rabbit_mq = RabbitMq(self)
 
     def send_request(self, request):
+        print('Sending')
         self.rabbit_mq.send_message(message=request)
         self.rabbit_mq.receive_message()
 
@@ -56,6 +57,8 @@ class AddBookPopUp(App):
         else:
             request = 'add:' + ':'.join(x.text() for x in self.field_edits)
             threading.Thread(target=self.send_request, args=(request,)).start()
+            for x in self.field_edits:
+                x.clear()
             self.close()
         
     def cancel(self):
@@ -120,6 +123,8 @@ class LibraryApp(App):
                     file_path += '.json'
                 elif self.html_rb.isChecked():
                     file_path += '.html'
+                elif self.xml_rb.isChecked():
+                    file_path += '.xml'
                 else:
                     file_path += '.txt'
             try:

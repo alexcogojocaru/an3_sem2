@@ -12,6 +12,7 @@ class RabbitMq:
         'routing_key': 'libraryapp.routingkey1',
         'queue': 'libraryapp.queue'
     }
+
     credentials = pika.PlainCredentials(config['username'], config['password'])
     parameters = (pika.ConnectionParameters(host=config['host']),
                   pika.ConnectionParameters(port=config['port']),
@@ -19,6 +20,9 @@ class RabbitMq:
 
     def __init__(self, ui):
         self.ui = ui
+        self.connection = None
+        self.channel = None
+        self.closing = False
 
     def on_received_message(self, blocking_channel, deliver, properties,
                             message):
@@ -63,3 +67,26 @@ class RabbitMq:
 
     def clear_queue(self, channel):
         channel.queue_purge(self.config['queue'])
+
+    def add_on_connection_close(self):
+        print('Adding connection close callback')
+        self.connection.add_on_close_callback(self.on_connection_closed)
+
+    def on_connection_closed(self):
+        self.channel = None
+
+        if self.closing:
+            self.connection.ioloop.stop()
+        else:
+            print('Connection closed, reopening in 5 seconds')
+
+    def open_channel(self):
+        pass
+
+    def on_connection_open(self):
+        print('Connection opened')
+        self.add_on_connection_close()
+        self.open_channel()
+
+    def on_channel_open(self):
+        print('Channel opened')
